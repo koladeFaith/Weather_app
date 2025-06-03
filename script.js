@@ -20,7 +20,6 @@ const apiKey = "bff842268ade253f4d4315b02a00624f";
 const loadApi = async () => {
     const cityInfo = document.getElementById('city')
     cityInfo.value = cityInfo.value.toLowerCase()
-    const temp = document.getElementById('temp')
     if (city === '') {
         toast('Fill in the input', '#f00', '#fff')
     } else {
@@ -43,7 +42,7 @@ const loadApi = async () => {
             <img
               src="https://openweathermap.org/img/wn/${result.weather[0].icon}@2x.png"
               alt="Weather Icon" />
-            <div class="temp" id="temp">${result.main.temp}°C</div>
+            <div class="temp" id="temp">${Math.round(result.main.temp)}°C</div>
           </div>
 <div class='location'>${result.name}, ${result.sys.country}</div>
 
@@ -70,7 +69,8 @@ const loadApi = async () => {
         const speedKmh = Math.round(windSpeed * 3.6)
         show.innerHTML += `
              <div id="wind">🌬️ Wind: ${speedKmh} km/h</div>
+            
         `
-
+        cityInfo.value = ''
     }
 }
