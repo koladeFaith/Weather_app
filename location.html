@@ -6,13 +6,40 @@
     <title>Document</title>
   </head>
   <body>
+    <section>
+      <input id="city" type="text" placeholder="Enter City">
+      <div id="show"></div>
+      <button onclick="loadApi()">Search</button>
+    </section>
+  </body>
     <script>
       const apiKey = "bff842268ade253f4d4315b02a00624f";
+      const loadApi = async() =>{
+        const api = `https://api.openweathermap.org/data/2.5/weather?&units=metric&q=${city.value}&appid=${apiKey}`
+        const apiFetch = await fetch(api)
+        const result = await apiFetch.json()
+        console.log(result);
+        show.innerHTML = `
+        <p>${result.name}</p>
+        <p>${result.main.temp}</p>
+        `
+        
+      }
 
+      // class faith{
+      //   constructor(age,height,personlity){
+      //     this.age = age,
+      //     this.height= height,
+      //     this.personlity = personlity
 
-
-
+      //   }
+      // }
+      // const allFaith = []
+      // const loadApi = () =>{
+      //   const otherPeople = new faith(city.value,"6,9","very good, kind, and nice, and absolutely gentle like a dove")
+      //   allFaith.push(otherPeople)
+      //   console.log(allFaith);
+      // }
       
     </script>
-  </body>
 </html>
