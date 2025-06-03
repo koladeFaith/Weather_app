@@ -28,6 +28,16 @@ const loadApi = async () => {
         const fetchApi = await fetch(api)
         let result = await fetchApi.json()
         console.log(result)
+        if (result.cod === '404' && result.message === 'city not found') {
+            toast('City not found', '#ff0', '#000')
+            show.innerHTML = ''
+            return
+        }
+        if (result.cod === '400' && result.message === 'Nothing to geocode') {
+            toast('Fill in the input', '#f00', '#fff')
+            show.innerHTML = ''
+            return
+        }
         show.innerHTML = `
                  <div class="weather-header" id="weather-header">
             <img
@@ -37,8 +47,30 @@ const loadApi = async () => {
           </div>
 <div class='location'>${result.name}, ${result.sys.country}</div>
 
-    
 `
-        let
-    } 
+        let descriptionText = '';
+        if (result.weather[0].main === "Clear") {
+            descriptionText = "☀️ Clear Sky";
+        } else if (result.weather[0].main === "Clouds") {
+            descriptionText = "☁️ Cloudy";
+        } else if (result.weather[0].main === "Rain") {
+            descriptionText = "🌧️ Rainy";
+        } else if (result.weather[0].main === "Snow") {
+            descriptionText = "❄️ Snowy";
+        } else if (result.weather[0].main === "Thunderstorm") {
+            descriptionText = "⛈️ Thunderstorm";
+        } else {
+            descriptionText = result.weather[0].description;
+        }
+        show.innerHTML += `<div class="description" id="description">${descriptionText}</div>
+         <div id="humidity">💧 Humidity: ${result.main.humidity}%</div>
+
+         `
+        const windSpeed = result.wind.speed
+        const speedKmh = Math.round(windSpeed * 3.6)
+        show.innerHTML += `
+             <div id="wind">🌬️ Wind: ${speedKmh} km/h</div>
+        `
+
+    }
 }
