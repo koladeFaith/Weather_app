@@ -47,11 +47,12 @@ body {
     font-size: 1.2rem;
     margin-top: 10px;
     font-weight: 500;
+    margin: 5px 0 15px;
+
   }
   
   .description {
     font-size: 1rem;
-    margin: 5px 0 15px;
     font-style: italic;
   }
   

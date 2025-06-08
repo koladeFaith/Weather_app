@@ -21,21 +21,22 @@
   <body>
     <div class="weather-card">
         <div class="p-3">
-          <h4 class="mb-4 text-center">Weather App</h4>
+          <h4 class="mb-4 text-center">No Cap Forecast</h4>
           <input
             id="city"
             type="text"
             class="form-control mb-3"
-            placeholder="Enter your city" />
+            placeholder="enter your city/town name" />
           <button onclick="loadApi()" class="btn btn-secondary w-100 mb-2">
             Check Weather
           </button>
         </div>
-        <div id="show" ;">
+        <div id="show">
 
           <div class="location" id="location"></div>
-          <div class="description" id="description"></div>
+  
           <div class="details">
+            <div class="description" id="description"></div>
             <div id="humidity"></div>
             <div id="wind"></div>
           </div>
